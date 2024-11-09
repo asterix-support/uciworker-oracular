@@ -36,6 +36,9 @@ RUN ssh-keygen -q -t rsa -P "" < /dev/zero && \
     cat /home/jenkins/.ssh/id_rsa.pub >> /home/jenkins/.ssh/authorized_keys && \
     chmod 600 /home/jenkins/.ssh/authorized_keys
 
+RUN mkdir -p /home/jenkins/.m2
+COPY settings.xml /home/jenkins/.m2
+
 # Configure the Jenkins non-interactive logins with UTF-8
 RUN echo "export LANG=en_US.UTF-8" >> /home/jenkins/.bashrc
 
